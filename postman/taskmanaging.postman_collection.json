@@ -1,0 +1,378 @@
+{
+	"info": {
+		"_postman_id": "b928c9e5-7068-4411-be18-25ced13f3276",
+		"name": "taskmanaging",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5522152"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"citra@example.com\",\n  \"password\": \"password3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/api/auth/login",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{task-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/api/auth/logout",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "me",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{task-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/api/auth/me",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "task list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{task-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/api/tasks?status=in_progress&priority=high&sort_by=due_date&sort_dir=asc",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "in_progress"
+						},
+						{
+							"key": "priority",
+							"value": "high"
+						},
+						{
+							"key": "sort_by",
+							"value": "due_date"
+						},
+						{
+							"key": "sort_dir",
+							"value": "asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{task-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Periksa laporan keuangan\",\n  \"description\": \"Cek laporan Q3 sebelum meeting\",\n  \"priority\": \"high\",\n  \"assigned_user_id\": 2,\n  \"due_date\": \"2025-10-10\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/api/tasks",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{task-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n  \"status\": \"in_progress\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/api/tasks/4",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{task-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/api/tasks/4",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload file",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{task-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "files[]",
+							"type": "file",
+							"src": "/Users/badrussholeh/Documents/cv-badrus-20IX2511.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{domain}}/api/tasks/1/attachments",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"1",
+						"attachments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "download file",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{task-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/api/attachments/2/download",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"attachments",
+						"2",
+						"download"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete file",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{task-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/api/attachments/2",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"attachments",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
