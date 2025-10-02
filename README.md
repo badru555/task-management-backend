@@ -15,7 +15,7 @@ This is a backend for authentication, task management and task attachment file u
 - set database in .env
 - do migration and seeder
 
-## Endpoints
+## Endpoints [postman collection included (./postman)]
 #### Authentication Endpoints:
 - `POST /api/auth/login` - User authentication with JWT
 - `POST /api/auth/logout` - Logout user
